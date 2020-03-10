@@ -2,7 +2,6 @@
   "name": "HannahTech",
   "version": "1.0",
   "description": "description for Hannah-Tech",
-  "content_security_policy": "script-src 'self' https://apis.google.com; object-src 'self'",
   "background": {
     "scripts": [ "background.js" ],
     "persistent": false
@@ -10,13 +9,11 @@
   "content_scripts": [
     {
       "matches": [ "*://*/*" ],
-      "js": [ "popup.js" ]
+      "js": [ "contentScript.js" ]
     }
   ],
-  "page_action": {
-    "default_popup": "popup.html"
+  "browser_action": {
+    "default_icon": "HannahTech.png"
   },
-  "permissions": [ "activeTab", "declarativeContent", "storage" ],
-  "options_page": "options.html",
   "manifest_version": 2
 }
