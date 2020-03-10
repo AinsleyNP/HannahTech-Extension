@@ -1,4 +1,16 @@
-// JavaScript source code
+console.log('AAAAAAAAAAAAAAAAAAA');
+
+chrome.runtime.onMessage.addListener(gotMessage);
+
+function gotMessage(message, sender, sendResponse) {
+    if (message.txt === "WHATS THE WORD?") {
+        var selword = getSelectionText();
+        console.log(selword);
+        //compare selword with database to find  match
+    }
+}
+
+
 function getSelectionText() {
     var text = "";
     if (window.getSelection) {
@@ -8,12 +20,3 @@ function getSelectionText() {
     }
     return text;
 }
-
-
-document.onmouseup = document.onkeyup = document.onselectionchange = function () {
-    document.getElementById("sel").value = getSelectionText();
-};
-
-chrome.runtime.sendMessage({ greeting: "hello" }, function (response) {
-    console.log(response.farewell);
-});
