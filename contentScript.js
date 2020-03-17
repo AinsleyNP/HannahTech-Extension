@@ -9,6 +9,7 @@ function gotMessage(message, sender, sendResponse) {
         if (checktext !== "") {
             console.log(checktext);
         }
+        clearSelection();
     }
 }
 
@@ -21,4 +22,9 @@ function getSelectionText() {
         console.log('DOCUMENT');
     }
     return text;
+}
+
+function clearSelection() {
+    if (window.getSelection) { window.getSelection().removeAllRanges(); }
+    else if (document.selection) { document.selection.empty(); }
 }
