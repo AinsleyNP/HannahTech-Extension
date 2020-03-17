@@ -3,7 +3,7 @@ chrome.browserAction.onClicked.addListener(buttonClicked);
 
 function buttonClicked(tab) {
     let msg = {
-        txt: "WHATS THE WORD?"
+        txt: "WHATS THE TEXT?"
     }
-    chrome.tabs.sendMessage(tab.id,msg);
+    chrome.tabs.sendMessage(tab.id, msg);
 }
