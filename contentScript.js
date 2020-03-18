@@ -8,6 +8,7 @@ function gotMessage(message, sender, sendResponse) {
         var checktext = getSelectionText();
         if (checktext !== "") {
             console.log(checktext);
+            openPage(checktext);
         }
         clearSelection();
     }
@@ -27,4 +28,9 @@ function getSelectionText() {
 function clearSelection() {
     if (window.getSelection) { window.getSelection().removeAllRanges(); }
     else if (document.selection) { document.selection.empty(); }
+}
+
+function openPage(checktext) {
+    //TO BE CHANGED TO CHECKING THROUGH DATABASE AND GETTING WEBSITE BASED ON TERMS
+    window.open("https://en.wikipedia.org/wiki/" + checktext)
 }
