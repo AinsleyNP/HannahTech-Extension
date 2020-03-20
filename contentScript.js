@@ -4,16 +4,23 @@ console.log('AAAAAAAAAAAAAAAAAAA');
 chrome.runtime.onMessage.addListener(gotMessage);
 
 function gotMessage(message, sender, sendResponse) {
-    if (message.txt === "WHATS THE TEXT?") {
-        var checktext = getSelectionText();
-        if (checktext !== "") {
+    var checktext = getSelectionText();
+    if (checktext !== "") {
+        if (message.txt === "WHATS THE TEXT?") {
             console.log(checktext);
+            alert(checktext);
+            clearSelection();
+        }
+        else if (message.txt === "OPEN THE WIKIPEDIA PAGE") {
+            console.log("WIKIOPEN");
             openPage(checktext);
         }
-        clearSelection();
+        else if (message.txt === "DO SOMETHING WITH THE TEXT") {
+            makeLink(checktext);
+        }
     }
+    
 }
-
 function getSelectionText() {
     var text = "";
     if (window.getSelection) {
@@ -30,7 +37,23 @@ function clearSelection() {
     else if (document.selection) { document.selection.empty(); }
 }
 
+function makeLink(text) {
+    return text.replace(text,'<a href="' + hyperlink + '">' + url + '</a>');
+};
+
+//DATABASE STUFF (HOPEFULLY)
 function openPage(checktext) {
     //TO BE CHANGED TO CHECKING THROUGH DATABASE AND GETTING WEBSITE BASED ON TERMS
     window.open("https://en.wikipedia.org/wiki/" + checktext)
+}
+
+function loadDB() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("demo").innerHTML = this.responseText;
+        }
+    };
+    xhttp.open("GET", "getcustomer.php?q=" + str, true);
+    xhttp.send();
 }
