@@ -1,5 +1,3 @@
-console.log('AAAAAAAAAAAAAAAAAAA');
-
 
 chrome.runtime.onMessage.addListener(gotMessage);
 
@@ -12,11 +10,12 @@ function gotMessage(message, sender, sendResponse) {
             clearSelection();
         }
         else if (message.txt === "OPEN THE WIKIPEDIA PAGE") {
-            console.log("WIKIOPEN");
+            clearSelection();
             openPage(checktext);
         }
-        else if (message.txt === "DO SOMETHING WITH THE TEXT") {
-            makeLink(checktext);
+        else if (message.txt === "OPEN ON HANNAH") {
+            clearSelection();
+            openHannahPage(checktext);
         }
     }
     
@@ -37,14 +36,14 @@ function clearSelection() {
     else if (document.selection) { document.selection.empty(); }
 }
 
-function makeLink(text) {
-    return text.replace(text,'<a href="' + hyperlink + '">' + url + '</a>');
-};
 
 //DATABASE STUFF (HOPEFULLY)
 function openPage(checktext) {
     //TO BE CHANGED TO CHECKING THROUGH DATABASE AND GETTING WEBSITE BASED ON TERMS
     window.open("https://en.wikipedia.org/wiki/" + checktext)
+}
+function openHannahPage(checktext) {
+    window.open("http://localhost/HannahConcept.html?q="+checktext)
 }
 
 function loadDB() {

@@ -1,4 +1,3 @@
-console.log('WE ARE IN THE BACKGROUND');
 chrome.browserAction.onClicked.addListener(buttonClicked);
 
 function buttonClicked(tab) {
@@ -15,8 +14,8 @@ var contextMenuItem = {
     "contexts": ["selection"],
 }
 var contextMenuItem2 = {
-    "id": "ReplaceText",
-    "title":"Replace Text",
+    "id": "ClorisSearch",
+    "title":"Search on Hannah Cloris",
     "contexts": ["selection"],
 }
 
@@ -30,9 +29,9 @@ chrome.contextMenus.onClicked.addListener(function (clickData,tab) {
         }
         chrome.tabs.sendMessage(tab.id, msg);
     }
-    else if (clickData.menuItemId == "ReplaceText") {
+    else if (clickData.menuItemId == "ClorisSearch") {
         let msg = {
-            txt: "DO SOMETHING WITH THE TEXT"
+            txt: "OPEN ON HANNAH"
         }
         chrome.tabs.sendMessage(tab.id, msg);
     }
