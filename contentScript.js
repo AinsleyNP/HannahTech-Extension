@@ -37,22 +37,10 @@ function clearSelection() {
 }
 
 
-//DATABASE STUFF (HOPEFULLY)
+// Open Page based on text selected
 function openPage(checktext) {
-    //TO BE CHANGED TO CHECKING THROUGH DATABASE AND GETTING WEBSITE BASED ON TERMS
     window.open("https://en.wikipedia.org/wiki/" + checktext)
 }
 function openHannahPage(checktext) {
     window.open("http://localhost/HannahConcept.html?q="+checktext)
-}
-
-function loadDB() {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("demo").innerHTML = this.responseText;
-        }
-    };
-    xhttp.open("GET", "getcustomer.php?q=" + str, true);
-    xhttp.send();
 }
